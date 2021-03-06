@@ -33,7 +33,7 @@ def main(app_key: Optional[str], once: bool):
     下载文件测试
     """
     if app_key is None:
-        print(f"app-key 没有设置")
+        print("app-key 没有设置")
         sys.exit(1)
 
     if once:
