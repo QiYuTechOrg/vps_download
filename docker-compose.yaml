@@ -1,0 +1,20 @@
+version: "3.3"
+
+
+# qiyutech/${{ env.IMAGE_NAME }}
+# ghcr.io/qiyutechdev/${{ env.IMAGE_NAME }}
+# registry.cn-hangzhou.aliyuncs.com/qiyutech/${{ env.IMAGE_NAME }}
+services:
+  vps_download:
+    image: registry.cn-hangzhou.aliyuncs.com/qiyutech/vps_download:v0.0.2
+    container_name: vps_download
+    restart: always
+    network_mode: host
+    env_file:
+      - prod.env
+    working_dir: /app
+    command: "python vps_download"
+    logging:
+      driver: local
+      options:
+        max-file: "10mb"
