@@ -6,7 +6,7 @@ version: "3.3"
 # registry.cn-hangzhou.aliyuncs.com/qiyutech/${{ env.IMAGE_NAME }}
 services:
   vps_download:
-    image: registry.cn-hangzhou.aliyuncs.com/qiyutech/vps_download:v0.0.2
+    image: registry.cn-hangzhou.aliyuncs.com/qiyutech/vps_download:v0.1.1
     container_name: vps_download
     restart: always
     network_mode: host
