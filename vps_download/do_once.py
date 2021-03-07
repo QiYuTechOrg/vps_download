@@ -9,7 +9,7 @@ from server_api import ServerAPI
 __all__ = ["do_run_once"]
 
 h = requests.get("https://ifconfig.me/ip", timeout=(5, 5))
-src_ip = h.content
+src_ip = h.text
 logging.info(f"{src_ip=}")
 
 
@@ -34,6 +34,7 @@ def do_run_once(app_key: str):
             if file_size <= 0:
                 continue  # not download file
             form = FileReportForm(
+                token=app_key,
                 src_ip=src_ip,
                 file_url=job.file_url,
                 file_size=file_size,
