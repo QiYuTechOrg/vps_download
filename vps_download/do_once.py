@@ -52,6 +52,10 @@ def do_one_job(item: FileItem) -> [int, float]:
         resp.raise_for_status()
         for chunk in resp.iter_content(chunk_size=128 * 1024):
             file_size += len(chunk)
+            if file_size > 100 * 1024 * 1024:  # 最多下载 100MB
+                break
+            if time.time() - start > 60:  # 最多测试 60s
+                break
         return file_size, time.time() - start
     except Exception as e:
         print(f"download {item.file_url} failed: {e}")
