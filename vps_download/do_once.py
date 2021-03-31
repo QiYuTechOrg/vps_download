@@ -1,4 +1,5 @@
 import logging
+import os
 import time
 
 import requests
@@ -8,8 +9,12 @@ from server_api import ServerAPI
 
 __all__ = ["do_run_once"]
 
-h = requests.get("https://ifconfig.me/ip", timeout=(5, 5))
-src_ip = h.text
+# ifconfig.me may be blocked
+# we should setup ours
+src_ip = os.getenv("IP_ADDRESS", None)
+if src_ip is None:
+    h = requests.get("https://ifconfig.me/ip", timeout=(5, 5))
+    src_ip = h.text
 logging.info(f"{src_ip=}")
 
 
