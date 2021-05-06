@@ -9,13 +9,20 @@ from server_api import ServerAPI
 
 __all__ = ["do_run_once"]
 
-# ifconfig.me may be blocked
-# we should setup ours
 src_ip = os.getenv("IP_ADDRESS", None)
-if src_ip is None:
-    h = requests.get("https://ifconfig.me/ip", timeout=(5, 5))
-    src_ip = h.text
-logging.info(f"{src_ip=}")
+try:
+    if src_ip is None:
+        h1 = requests.get('https://ip.qiyutech.tech/', timeout=(5, 5))
+        if h1.ok:
+            src_ip = h1.text
+        if src_ip is None or src_ip == "":
+            h2 = requests.get("https://ifconfig.me/ip", timeout=(5, 5))
+            if h2.ok:
+                src_ip = h2.text
+    logging.info(f"{src_ip=}")
+except Exception as e:
+    logging.error('get ip address failed:', e)
+    src_ip = '0.0.0.0'
 
 
 def do_run_once(app_key: str):
