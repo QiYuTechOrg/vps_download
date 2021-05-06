@@ -1,5 +1,5 @@
 # vps_download
 
-文件下载测试
+VPS HTTP 文件下载速度测试
 
 [文档](https://oss.qiyutech.tech/)
