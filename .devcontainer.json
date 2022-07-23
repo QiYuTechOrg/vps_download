@@ -1,12 +1,16 @@
 {
-    "customizations": {
-        "vscode": {
-            "extensions": [
-                "bungcip.better-toml",
-                "ms-python.python",
-                "eamodio.gitlens",
-                "EditorConfig.EditorConfig"
-            ]
-        }
+  "postCreateCommand": "sh setup.sh",
+  "remoteEnv": {
+    "PATH": "${containerEnv:PATH}:/home/codespace/.cargo/bin"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "bungcip.better-toml",
+        "ms-python.python",
+        "eamodio.gitlens",
+        "EditorConfig.EditorConfig"
+      ]
     }
+  }
 }
